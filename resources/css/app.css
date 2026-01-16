@@ -2,3 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/*Navigation*/
+.menu-link {
+  @apply flex items-center gap-3 px-5 py-2 rounded-lg hover:bg-green-900 hover:font-semibold hover:text-white hover:shadow-sm  
+   text-gray-800 transition;
+}
+.submenu-link {  
+  @apply px-4 py-2 text-sm rounded-lg hover:bg-green-900 hover:font-semibold hover:text-white hover:shadow-sm
+   transition text-gray-600 ;
+}
+
+/* Fade animation */
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+
+
+
+
+
+
+/* Dropdown animation */
+.slide {
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
