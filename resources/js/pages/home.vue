@@ -59,7 +59,7 @@
         >
         <!-- Background Image -->
         <img
-            src=""
+            src="/public/images/background.png"
             alt="Power Infrastructure"
             class="absolute inset-0 w-full h-full object-cover"
         />

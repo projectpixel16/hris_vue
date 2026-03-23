@@ -4,7 +4,7 @@
 			>
 		</div>
 		<!-- SIDEBAR -->
-		<aside :class="[ 'fixed inset-y-0 left-0 z-40 w-60 border-l bg-gray-50  text-gray-200 transform transition-transform duration-300 md:translate-x-0',
+		<aside :class="[ 'fixed inset-y-0 left-0 z-40 w-60 border-l bg-white  text-gray-200 transform transition-transform duration-300 md:translate-x-0',
 			sidebarOpen ? 'translate-x-0' : '-translate-x-full' ]" >
 			<!-- Logo -->
 			<div class="h-16 flex items-center px-6 border-b">
@@ -46,7 +46,7 @@
 			<!-- Navigation -->
 			<nav class="flex-1 flex flex-col space-y-2 pb-3 px-2 text-sm">
 				<!-- Dashboard -->
-				<a href="#" class="menu-link">
+				<a href="/admin/dashboard" class="menu-link">
 				<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
 					viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round"
@@ -82,7 +82,7 @@
 
 				<transition name="fade">
 					<div v-if="masterfileOpen" class="ml-6 mt-1 flex flex-col space-y-1">
-					<a href="#" class="submenu-link">Employees</a>
+					<a href="/admin/employee_list" class="submenu-link">Employees</a>
 					<a href="#" class="submenu-link">Departments</a>
 					<a href="#" class="submenu-link">Positions</a>
 					<a href="#" class="submenu-link">Employment Type</a>
@@ -110,20 +110,31 @@
 					</svg> Reports 
 				</a> 
 				<!-- Settings --> 
-				<a href="#" class="menu-link" > 
-					<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"> 
-						<path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317a1 1 0 011.35-.936l.99.495a1 1 0 001.36-.936l.15-1.036M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> 
-					</svg> System Settings 
+				<a href="#" class="menu-link flex items-center gap-2">
+					<svg 
+						xmlns="http://www.w3.org/2000/svg"
+						class="w-5 h-5"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path 
+							stroke-linecap="round" 
+							stroke-linejoin="round" 
+							d="M11.983 3.06c.414-1.343 2.32-1.343 2.734 0a1.724 1.724 0 002.573 1.066c1.18-.73 2.653.743 1.923 1.923a1.724 1.724 0 001.066 2.573c1.343.414 1.343 2.32 0 2.734a1.724 1.724 0 00-1.066 2.573c.73 1.18-.743 2.653-1.923 1.923a1.724 1.724 0 00-2.573 1.066c-.414 1.343-2.32 1.343-2.734 0a1.724 1.724 0 00-2.573-1.066c-1.18.73-2.653-.743-1.923-1.923a1.724 1.724 0 00-1.066-2.573c-1.343-.414-1.343-2.32 0-2.734a1.724 1.724 0 001.066-2.573c-.73-1.18.743-2.653 1.923-1.923a1.724 1.724 0 002.573-1.066z"
+						/>
+						<circle cx="13" cy="10" r="3" stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+					System Settings
 				</a>
 			</nav>
 		</aside>
 
-
 		<!-- MAIN CONTENT -->
-		 
 		<div class="flex-1 md:ml-60 border-l  ">
 		<!-- TOP BAR -->
-			<header class="bg-gray-50 sticky top-0 z-30 h-16 flex items-center justify-between px-6 border-b">
+			<header class="bg-white sticky top-0 z-30 h-16 flex items-center justify-between px-6 border-b">
 				<button class="md:hidden text-2xl" @click="sidebarOpen = !sidebarOpen">
 				☰
 				</button>
@@ -144,16 +155,16 @@
 
 					<!-- Notification Dropdown -->
 					<transition name="fade">
-					<div v-if="notificationsOpen" class="absolute right-0 mt-2 w-80 bg-white shadow-lg border border-gray-200 z-50">
-						<div class="p-4 font-semibold border-b border-gray-100">Notifications</div>
-						<div class="max-h-60 overflow-y-auto">
-						<div v-for="note in notifications" :key="note.id" class="p-3 rounded-lg hover:bg-green-900 hover:font-semibold hover:text-white hover:shadow-sm font-medium text-gray-600 cursor-pointer">
-							<p class="text-sm text-gray-700">{{ note.text }}</p>
-							<span class="text-xs text-gray-400">{{ note.time }}</span>
+						<div v-if="notificationsOpen" class="absolute right-0 mt-2 w-80 bg-white shadow-lg border border-gray-200 z-50">
+							<div class="p-4 font-semibold border-b border-gray-100">Notifications</div>
+							<div class="max-h-60 overflow-y-auto">
+								<div v-for="note in notifications" :key="note.id" class="p-3 hover:bg-green-900 hover:font-semibold hover:shadow-sm font-medium text-gray-600 cursor-pointer">
+									<p class="text-sm text-gray-700">{{ note.text }}</p>
+									<span class="text-xs text-gray-400">{{ note.time }}</span>
+								</div>
+							</div>
+							<div class="p-2 text-center text-sm text-blue-600 cursor-pointer  hover:bg-green-900 hover:font-semibold hover:shadow-sm font-medium text-gray-600">View All</div>
 						</div>
-						</div>
-						<div class="p-2 text-center text-sm text-blue-600 cursor-pointer rounded-lg hover:bg-green-900 hover:font-semibold hover:text-white hover:shadow-sm font-medium text-gray-600">View All</div>
-					</div>
 					</transition>
 				</div>
 

@@ -3,8 +3,17 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import notFound from '../pages/notFound.vue'
 import home from '../pages/home.vue'
+import seeker_apply from '../pages/application_form.vue'
 import admin_dashboard from '../hr_admin/dashboard.vue'
+import employee_list from '../hr_admin/employee_list.vue'
+import employee_add from '../hr_admin/employee_add.vue'
 
+// filing UI
+import filing_dashboard from '../efiling/dashboard.vue'
+import document_form from '../efiling/document_form.vue'
+import document_list from '../efiling/document_list.vue'
+import document_update from '../efiling/document_update.vue'
+import document_view from '../efiling/document_view.vue'
 
 const routes = [
     {
@@ -13,8 +22,21 @@ const routes = [
     },
 
     {
-        path:'/admindashboard',
+        path:'/admin/dashboard',
         component: admin_dashboard,
+    },
+    {
+        path:'/apply',
+        component: seeker_apply,
+    },
+    {
+        path:'/admin/employee_list',
+        component: employee_list,
+    },
+
+    {
+        path:'/admin/employee_add',
+        component: employee_add,
     },
     {
         path:'/:pathMatch(.*)*',
@@ -23,7 +45,30 @@ const routes = [
         meta:{
             requiresAuth:false
         }
-    }
+    },
+
+    {
+        path:'/filing/dashboard',
+        component: filing_dashboard,
+    },
+
+    {
+        path:'/filing/form',
+        component: document_form,
+    },
+    {
+        path:'/filing/document_list',
+        component: document_list,
+    },
+    {
+        path:'/filing/document_view',
+        component: document_view,
+    },
+    {
+        path:'/filing/document_update',
+        component: document_update,
+    },
+
 ]
 
 const router = createRouter({
