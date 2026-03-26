@@ -24,9 +24,9 @@
                     </p>
                 </div>
 
-                <button class="btn-primary h-fit" @click="toggleEdit">
-                    {{ isEditing ? "Cancel" : "Edit" }}
-                </button>
+                <a href="/filing/document_update" class="btn-primary h-fit" @click="toggleEdit">
+                    Edit
+                </a>
             </div>
 
             <!-- CONTENT -->
@@ -57,14 +57,22 @@
             <div class="glass p-6 rounded-3xl">
                 <h3 class="font-semibold mb-3">Attachments</h3>
 
-                <div class="grid grid-cols-5 gap-3">
+                <div class="grid grid-cols-6 gap-3">
                     <div
                         v-for="(file,i) in form.attachments"
                         :key="i"
                         class="file-card"
                         @click="openPreview(i)"
                     >
-                        <div class="text-3xl">{{ getFileIcon(file.name) }}</div>
+                        <component 
+                            :is="getFileIcon(file.name)" 
+                            :class="[
+                                'w-8 h-8',
+                                isImage(file.name) ? 'text-blue-500' :
+                                isPDF(file.name) ? 'text-red-500' :
+                                'text-gray-500'
+                            ]"
+                        />
                         <p class="text-xs truncate">{{ file.name }}</p>
                     </div>
                 </div>
@@ -78,76 +86,87 @@
                 class="glass-backdrop fixed inset-0 flex justify-center items-center z-50 !m-0"
                 @click.self="closeModal"
             >
-                <div class="glass-modal rounded-3xl w-full max-w-3xl modal-content">
-                    
-                    <div class="p-6 flex flex-col h-full">
+                <div class="bg-white w-full max-w-5xl h-[85vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden">
 
-                        <!-- HEADER -->
-                        <div class="flex justify-between items-center mb-4">
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-700">
-                                    File Preview
-                                </h3>
-                                <p class="text-sm text-gray-500">
-                                    {{ currentFile.name }}
-                                </p>
-                            </div>
-                            <button @click="closeModal" class="text-gray-500 hover:text-gray-700">
-                                ✕
+                    <!-- HEADER (STICKY) -->
+                    <div class="flex items-center justify-between px-6 py-4 border-b bg-white/80 backdrop-blur sticky top-0 z-10">
+                        <div class="flex flex-col">
+                            <h3 class="text-lg font-semibold text-gray-800">
+                                Document Preview
+                            </h3>
+                            <p class="text-sm text-gray-500 truncate max-w-md">
+                                {{ currentFile.name }}
+                            </p>
+                        </div>
+
+                        <button 
+                            @click="closeModal"
+                            class="text-gray-400 hover:text-gray-700 text-xl"
+                        >
+                            ✕
+                        </button>
+                    </div>
+
+                    <!-- CONTENT -->
+                    <div class="flex-1 flex items-center justify-center bg-gray-100 relative overflow-hidden">
+
+                        <!-- IMAGE -->
+                        <img
+                            v-if="isImage(currentFile.name)"
+                            :src="currentFile.url"
+                            class="max-h-full max-w-full object-contain transition-transform duration-300 hover:scale-105"
+                        />
+
+                        <!-- PDF -->
+                        <iframe
+                            v-else-if="isPDF(currentFile.name)"
+                            :src="currentFile.url"
+                            class="w-full h-full"
+                        ></iframe>
+
+                        <!-- FALLBACK -->
+                        <div v-else class="text-gray-400 text-sm">
+                            Preview not supported
+                        </div>
+
+                    </div>
+
+                    <!-- FOOTER (STICKY) -->
+                    <div class="flex items-center justify-between px-6 py-4 border-t bg-white/80 backdrop-blur sticky bottom-0">
+
+                        <!-- NAVIGATION -->
+                        <div class="flex gap-2">
+                            <button 
+                                class="px-4 py-2 rounded-xl bg-gray-200 hover:bg-gray-300 text-sm"
+                                @click="prevFile"
+                            >
+                                ← Prev
+                            </button>
+
+                            <button 
+                                class="px-4 py-2 rounded-xl bg-gray-200 hover:bg-gray-300 text-sm"
+                                @click="nextFile"
+                            >
+                                Next →
                             </button>
                         </div>
 
-                        <!-- FILE PREVIEW -->
-                        <div class="flex-1 flex items-center justify-center overflow-auto bg-white/40 rounded-2xl p-4">
+                        <!-- ACTIONS -->
+                        <div class="flex gap-2">
+                            <a 
+                                :href="currentFile.url"
+                                target="_blank"
+                                class="px-4 py-2 rounded-xl bg-blue-500 hover:bg-blue-600 text-white text-sm"
+                            >
+                                Open
+                            </a>
 
-                            <!-- IMAGE -->
-                            <img
-                                v-if="isImage(currentFile.name)"
-                                :src="currentFile.url"
-                                class="max-h-[65vh] w-auto object-contain rounded-xl shadow"
-                            />
-
-                            <!-- PDF -->
-                            <iframe
-                                v-else-if="isPDF(currentFile.name)"
-                                :src="currentFile.url"
-                                class="w-full h-[65vh] rounded-xl shadow"
-                            ></iframe>
-
-                            <!-- FALLBACK -->
-                            <div v-else class="text-gray-400 text-sm">
-                                Preview not supported
-                            </div>
-
-                        </div>
-
-                        <!-- NAVIGATION + ACTIONS -->
-                        <div class="flex justify-between items-center mt-5 gap-3">
-
-                            <div class="flex gap-2">
-                                <button 
-                                    class="btn-secondary"
-                                    @click="prevFile"
-                                >
-                                    Prev
-                                </button>
-                                <button 
-                                    class="btn-secondary"
-                                    @click="nextFile"
-                                >
-                                    Next
-                                </button>
-                            </div>
-
-                            <div class="flex gap-2">
-                                <button 
-                                    @click="closeModal"
-                                    class="btn-secondary"
-                                >
-                                    Close
-                                </button>
-                            </div>
-
+                            <button 
+                                @click="closeModal"
+                                class="px-4 py-2 rounded-xl bg-gray-300 hover:bg-gray-400 text-sm"
+                            >
+                                Close
+                            </button>
                         </div>
 
                     </div>
@@ -160,162 +179,168 @@
 </template>
 
 <script setup>
-import { reactive, ref, computed, watch } from 'vue'
-import navigation from "../components/layouts/navigation_filing.vue"
+    import { reactive, ref, computed, watch } from 'vue'
+    import navigation from "../components/layouts/navigation_filing.vue"
+    import { 
+        PhotoIcon, 
+        DocumentTextIcon, 
+        FolderIcon 
+    } from '@heroicons/vue/24/outline'
 
-/* STATE */
-const previewModal = ref(false)
-const currentIndex = ref(0)
-const isEditing = ref(false)
+    /* STATE */
+    const previewModal = ref(false)
+    const currentIndex = ref(0)
+    const isEditing = ref(false)
 
-/* FORM */
-const form = reactive({
-    subject:"Sample Document",
-    company:"San Miguel Corporation",
-    remark:"<p>This is a long remark... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.... This is a long remark... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32....</p>",
-    attachments:[
-        {name:"sample1.jpg", url:"https://via.placeholder.com/600x400"},
-        {name:"sample2.png", url:"https://via.placeholder.com/600x400"},
-        {name:"sample.pdf", url:"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"}
-    ]
-})
+    /* FORM */
+    const form = reactive({
+        subject:"Sample Document",
+        company:"San Miguel Corporation",
+        remark:"<p>This is a long remark... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>",
+        attachments:[
+            {name:"sample1.jpg", url:"https://via.placeholder.com/600x400"},
+            {name:"sample2.png", url:"https://via.placeholder.com/600x400"},
+            {name:"sample.pdf", url:"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"},
+            {name:"", url:"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"}
+        ]
+    })
 
-/* COMPUTED */
-const currentFile = computed(()=> form.attachments[currentIndex.value])
+    /* COMPUTED */
+    const currentFile = computed(()=> form.attachments[currentIndex.value])
 
-/* METHODS */
-function toggleEdit(){
-    isEditing.value = !isEditing.value
-}
-
-function openPreview(i){
-    currentIndex.value = i
-    previewModal.value = true
-}
-
-function closeModal(){
-    previewModal.value = false
-}
-
-function nextFile(){
-    if(currentIndex.value < form.attachments.length - 1){
-        currentIndex.value++
+    /* METHODS */
+    function toggleEdit(){
+        isEditing.value = !isEditing.value
     }
-}
 
-function prevFile(){
-    if(currentIndex.value > 0){
-        currentIndex.value--
+    function openPreview(i){
+        currentIndex.value = i
+        previewModal.value = true
     }
-}
 
-function isImage(name){
-    return /\.(jpg|jpeg|png)$/i.test(name)
-}
+    function closeModal(){
+        previewModal.value = false
+    }
 
-function isPDF(name){
-    return /\.pdf$/i.test(name)
-}
+    function nextFile(){
+        if(currentIndex.value < form.attachments.length - 1){
+            currentIndex.value++
+        }
+    }
 
-function getFileIcon(name){
-    if(isImage(name)) return "🖼️"
-    if(isPDF(name)) return "📄"
-    return "📁"
-}
+    function prevFile(){
+        if(currentIndex.value > 0){
+            currentIndex.value--
+        }
+    }
 
-/* LOCK BODY SCROLL */
-watch(previewModal, (val)=>{
-    document.body.style.overflow = val ? 'hidden' : ''
-})
-</script>
+    function isImage(name){
+        return /\.(jpg|jpeg|png)$/i.test(name)
+    }
 
-<style scoped>
-.glass-backdrop {
-    background: rgba(16,16,16,0.05);
-    backdrop-filter: blur(5px);
+    function isPDF(name){
+        return /\.pdf$/i.test(name)
+    }
 
-    position: fixed;
-    inset: 0;
+    function getFileIcon(name) {
+        if (isImage(name)) return PhotoIcon
+        if (isPDF(name)) return DocumentTextIcon
+        return FolderIcon
+    }
 
-    overflow-y: auto;
+    /* LOCK BODY SCROLL */
+    watch(previewModal, (val)=>{
+        document.body.style.overflow = val ? 'hidden' : ''
+    })
+    </script>
 
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    <style scoped>
+    .glass-backdrop {
+        background: rgba(16,16,16,0.05);
+        backdrop-filter: blur(5px);
 
-    padding: 80px 20px;
-}
-.glass-backdrop{
-    scroll-behavior: smooth;
-}
+        position: fixed;
+        inset: 0;
 
-.glass-modal {
-    background: rgba(255,255,255,0.76);
-    backdrop-filter: blur(30px);
-    border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(42,42,42,0.13);
+        overflow-y: auto;
 
-    width: 100%;
-    max-width: 850px;
-}
-.modal-content{
-    line-height: 1.6;
-}
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
 
-/* REMARK SCROLL */
-.remark-box{
-    max-height: 350px;
-    overflow-y: auto;
-    padding-right: 4px;
-}
-.remark-box::-webkit-scrollbar {
-    width: 6px;
-}
-.remark-box::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.2);
-    border-radius: 10px;
-}
+        padding: 80px 20px;
+    }
+    .glass-backdrop{
+        scroll-behavior: smooth;
+    }
 
-/* FILE CARD */
-.file-card{
-    @apply bg-white/40 backdrop-blur p-3 rounded-xl flex flex-col items-center justify-center cursor-pointer transition;
-}
-.file-card:hover{
-    transform: scale(1.05);
-}
+    .glass-modal {
+        background: rgba(255,255,255,0.76);
+        backdrop-filter: blur(30px);
+        border-radius: 24px;
+        box-shadow: 0 8px 32px rgba(42,42,42,0.13);
 
-/* MODAL */
-.modal{
-    @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50;
-}
-.modal-content{
-    @apply bg-white p-6 rounded-2xl w-[90%] max-w-3xl flex flex-col;
-    max-height: 90vh;
-}
+        width: 100%;
+        max-width: 850px;
+    }
+    .modal-content{
+        line-height: 1.6;
+    }
 
-/* MODAL ANIMATION */
-.modal-enter-active,
-.modal-leave-active{
-    transition: all 0.25s ease;
-}
+    /* REMARK SCROLL */
+    .remark-box{
+        max-height: 350px;
+        overflow-y: auto;
+        padding-right: 4px;
+    }
+    .remark-box::-webkit-scrollbar {
+        width: 6px;
+    }
+    .remark-box::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.2);
+        border-radius: 10px;
+    }
 
-.modal-enter-from{
-    opacity:0;
-    transform: scale(0.95) translateY(20px);
-}
+    /* FILE CARD */
+    .file-card{
+        @apply bg-white/40 backdrop-blur p-3 rounded-xl flex flex-col items-center justify-center cursor-pointer transition;
+    }
+    .file-card:hover{
+        transform: scale(1.05);
+    }
 
-.modal-enter-to{
-    opacity:1;
-    transform: scale(1) translateY(0);
-}
+    /* MODAL */
+    .modal{
+        @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50;
+    }
+    .modal-content{
+        @apply bg-white p-6 rounded-2xl w-[90%] max-w-3xl flex flex-col;
+        max-height: 90vh;
+    }
 
-.modal-leave-from{
-    opacity:1;
-}
+    /* MODAL ANIMATION */
+    .modal-enter-active,
+    .modal-leave-active{
+        transition: all 0.25s ease;
+    }
 
-.modal-leave-to{
-    opacity:0;
-    transform: scale(0.95) translateY(20px);
-}
+    .modal-enter-from{
+        opacity:0;
+        transform: scale(0.95) translateY(20px);
+    }
+
+    .modal-enter-to{
+        opacity:1;
+        transform: scale(1) translateY(0);
+    }
+
+    .modal-leave-from{
+        opacity:1;
+    }
+
+    .modal-leave-to{
+        opacity:0;
+        transform: scale(0.95) translateY(20px);
+    }
 
 </style>

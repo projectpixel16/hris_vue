@@ -112,9 +112,7 @@
 
                         <div>
                             <label class="label">Confidential?</label>
-
-                            <div class="flex gap-3 mt-2">
-
+                            <div class="flex gap-2 mt-2">
                                 <button
                                     type="button"
                                     @click="form.confidential='Yes'"

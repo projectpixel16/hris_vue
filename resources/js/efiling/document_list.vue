@@ -20,9 +20,9 @@
                             Filter
                         </button>
 
-                        <button class="btn-primary">
+                        <a href="/filing/form" class="btn-primary">
                             + Add New Record
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -75,8 +75,9 @@
             <!-- DATATABLE -->
             <div class="glass p-6 rounded-3xl">
                 <!-- NOTIFICATION -->
-                <div class="draft-alert mb-4">
-                    3 employee record(s) are incomplete. Please review and complete their details.
+                <div class="draft-alert mb-4 flex justify-between">
+                    <span>3 employee record(s) are incomplete. Please review and complete their details.</span>
+                    <a href="" class="font-medium">View Record</a>
                 </div>
                 <!-- TABLE TOP -->
                 <div class="flex justify-between items-center mb-4">
@@ -115,12 +116,9 @@
                                 <td class="p-4">{{ row.department }}</td>
                                 <td class="p-4">{{ row.type }}</td>
                                 <td class="p-4 flex justify-center gap-2">
-                                    <a href="/filing/document_update" class="btn-view">
-                                        View
+                                    <a href="/filing/document_view" class="bg-white rounded-full p-1 text-gray-600" title="View Document">
+                                        <EyeIcon class="size-4"></EyeIcon>
                                     </a>
-                                    <button class="btn-secondary">
-                                        Edit
-                                    </button>
                                 </td>
                             </tr>
                         </tbody>
@@ -146,6 +144,7 @@
 <script setup>
     import { ref } from "vue"
     import navigation from "../components/layouts/navigation_filing.vue"
+    import { EyeIcon } from "@heroicons/vue/24/solid"
 
     const showFilter = ref(false)
 

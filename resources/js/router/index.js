@@ -14,6 +14,9 @@ import document_form from '../efiling/document_form.vue'
 import document_list from '../efiling/document_list.vue'
 import document_update from '../efiling/document_update.vue'
 import document_view from '../efiling/document_view.vue'
+import master_users from '../efiling/masterfile/users.vue'
+import master_departments from '../efiling/masterfile/departments.vue'
+import master_company from '../efiling/masterfile/company.vue'
 
 const routes = [
     {
@@ -67,6 +70,18 @@ const routes = [
     {
         path:'/filing/document_update',
         component: document_update,
+    },
+    {
+        path:'/filing/users',
+        component: master_users,
+    },
+    {
+        path:'/filing/departments',
+        component: master_departments,
+    },
+    {
+        path:'/filing/company',
+        component: master_company,
     },
 
 ]

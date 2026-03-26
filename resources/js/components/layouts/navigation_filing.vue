@@ -77,7 +77,7 @@
                 <nav class="flex flex-col gap-2">
 
                     <!-- Dashboard -->
-                    <a href="#" class="menu-item">
+                    <a href="/filing/dashboard" class="menu-item">
                         <div>
                             <svg width="0" height="0">
                                 <defs>
@@ -112,13 +112,13 @@
                         </button>
 
                         <div
-                            class="overflow-hidden transition-all duration-300 ease-in-out"
+                            class="overflow-hidden transition-all duration-300 ease-in-out "
                             :style="{ height: masterfileHeight + 'px', opacity: masterfileOpen ? 1 : 0 }"
                         >
-                            <div ref="masterfileContent" class="ml-9 mt-2 flex flex-col gap-1">
-                                <a href="#" class="submenu-item">User</a>
-                                <a href="#" class="submenu-item">Company</a>
-                                <a href="#" class="submenu-item">Department</a>
+                            <div ref="masterfileContent" class="ml-9 mt-2 pb-2 flex flex-col gap-1">
+                                <a href="/filing/users" class="submenu-item">User</a>
+                                <a href="/filing/company" class="submenu-item">Company</a>
+                                <a href="/filing/departments" class="submenu-item">Department</a>
                             </div>
                         </div>
                     </div>
@@ -154,7 +154,7 @@
                             class="overflow-hidden transition-all duration-300 ease-in-out"
                             :style="{ height: reportsHeight + 'px', opacity: reportsOpen ? 1 : 0 }"
                         >
-                            <div ref="reportsContent" class="ml-9 mt-2 flex flex-col gap-1">
+                            <div ref="reportsContent" class="ml-9 mt-2 pb-2 flex flex-col gap-1">
                                 <a href="#" class="submenu-item">Monthly</a>
                                 <a href="#" class="submenu-item">Annual</a>
                                 <a href="#" class="submenu-item">Export</a>

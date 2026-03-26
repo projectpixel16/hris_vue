@@ -7,10 +7,10 @@
                 <div v-if="showWelcome"
                     class="glass p-6 rounded-3xl flex justify-between items-center backdrop-blur-xl border border-white/30">
                     <div>
-                        <h2 class="text-2xl font-semibold text-white">
+                        <h2 class="text-2xl font-semibold text-gray-700">
                             Welcome back, {{ userName }} 👋
                         </h2>
-                        <p class="text-sm text-white/70 mt-1">
+                        <p class="text-sm text-gray-500 mt-1">
                             Here's what's happening today.
                         </p>
                     </div>
