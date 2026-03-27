@@ -7,6 +7,7 @@ import seeker_apply from '../pages/application_form.vue'
 import admin_dashboard from '../hr_admin/dashboard.vue'
 import employee_list from '../hr_admin/employee_list.vue'
 import employee_add from '../hr_admin/employee_add.vue'
+import employee_profile from '../hr_admin/employee_profile.vue'
 
 // filing UI
 import filing_dashboard from '../efiling/dashboard.vue'
@@ -40,6 +41,10 @@ const routes = [
     {
         path:'/admin/employee_add',
         component: employee_add,
+    },
+    {
+        path:'/admin/employee_profile',
+        component: employee_profile,
     },
     {
         path:'/:pathMatch(.*)*',

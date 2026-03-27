@@ -1,6 +1,6 @@
 <template> 
 <navigation>
-    <div class="space-y-6">
+    <div class="space-y-4">
 
         <!-- HEADER -->
         <div class="glass px-8 py-6 rounded-3xl shadow-sm">
@@ -57,7 +57,7 @@
             <div class="glass p-6 rounded-3xl">
                 <h3 class="font-semibold mb-3">Attachments</h3>
 
-                <div class="grid grid-cols-6 gap-3">
+                <div class="grid grid-cols-6  gap-3">
                     <div
                         v-for="(file,i) in form.attachments"
                         :key="i"
@@ -252,9 +252,9 @@
     watch(previewModal, (val)=>{
         document.body.style.overflow = val ? 'hidden' : ''
     })
-    </script>
+</script>
 
-    <style scoped>
+<style scoped>
     .glass-backdrop {
         background: rgba(16,16,16,0.05);
         backdrop-filter: blur(5px);

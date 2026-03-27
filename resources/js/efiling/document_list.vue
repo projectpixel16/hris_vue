@@ -1,6 +1,6 @@
 <template>
     <navigation>
-        <div class="space-y-6">
+        <div class="space-y-4">
             <!-- HEADER -->
             <div class="glass p-6 rounded-3xl space-y-4">
                 <div class="flex justify-between items-center">
