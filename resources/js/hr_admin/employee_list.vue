@@ -67,33 +67,33 @@
 
         <!-- DataTable Controls -->
         <div class="bg-white rounded-xl shadow mb-4 p-4">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
-            <!-- Left Controls -->
-            <div class="flex items-center gap-3">
-            <label class="text-sm text-gray-600">Show</label>
-            <select
-                v-model="perPage"
-                class="border rounded-lg px-2 py-1 text-sm focus:ring-2 focus:ring-blue-500"
-            >
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-            </select>
-            <span class="text-sm text-gray-600">entries</span>
-            </div>
+                <!-- Left Controls -->
+                <div class="flex items-center gap-3">
+                <label class="text-sm text-gray-600">Show</label>
+                <select
+                    v-model="perPage"
+                    class="border rounded-lg px-2 py-1 text-sm focus:ring-2 focus:ring-blue-500"
+                >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                </select>
+                <span class="text-sm text-gray-600">entries</span>
+                </div>
 
-            <!-- Search -->
-            <div class="relative w-full md:w-64">
-            <input
-                v-model="search"
-                type="text"
-                placeholder="Search employees..."
-                class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500"
-            />
+                <!-- Search -->
+                <div class="relative w-full md:w-64">
+                <input
+                    v-model="search"
+                    type="text"
+                    placeholder="Search employees..."
+                    class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500"
+                />
+                </div>
             </div>
-        </div>
         </div>
 
         <!-- Employee Table -->
@@ -167,12 +167,47 @@
                             class="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-50"
                         >
                             <ul class="text-sm text-gray-700 text-left">
-                                <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">View Employee</li>
-                                <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">View Files</li>
-                                <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Amend</li>
-                                <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Add Allowance</li>
-                                <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Add Evaluation</li>
-                                <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Add Disciplinary</li>
+                                <li>
+                                    <a href="/admin/employee_profile"
+                                    class="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                        View Employee
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                        View Files
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                        Amend
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                        Add Allowance
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                        Add Evaluation
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                        Add Disciplinary
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         </td>
@@ -204,8 +239,6 @@
             </div>
         </div>
 
-
-        
     </navigation>
 </template>
 
