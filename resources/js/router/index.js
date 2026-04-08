@@ -7,6 +7,7 @@ import admin_dashboard from '../hr_admin/dashboard.vue'
 import employee_list from '../hr_admin/employee_list.vue'
 import employee_add from '../hr_admin/employee_add.vue'
 import employee_profile from '../hr_admin/employee_profile.vue'
+import applicants from '../hr_admin/applicant_list.vue'
 
 const routes = [
     {
@@ -21,6 +22,10 @@ const routes = [
     {
         path:'/apply',
         component: seeker_apply,
+    },
+    {
+        path:'/admin/applicants',
+        component: applicants,
     },
     {
         path:'/admin/employee_list',

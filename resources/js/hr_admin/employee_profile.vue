@@ -107,7 +107,6 @@
 
                 <!-- TAB CONTENT -->
                 <div class="py-4">
-                    <!-- PERSONAL DATA -->
                     <component :is="currentTabComponent"  :employee="employee" @add-file="addFile" @remove-file="removeFile"/>
                 </div>
             </div>
@@ -139,6 +138,11 @@
     import Attachments from "../hr_admin/tabs/AttachmentsTab.vue";
     import Attendance from "../hr_admin/tabs/AttendanceTab.vue";
     import Leaves from "../hr_admin/tabs/LeavesTab.vue";
+    import JobHistory from "../hr_admin/tabs/JobHistoryTab.vue";
+    import Disciplinary from "../hr_admin/tabs/DisciplinaryActionTab.vue";
+    import Evaluation from "../hr_admin/tabs/EvaluationHistoryTab.vue";
+    import Allowance from "../hr_admin/tabs/AllowanceTab.vue";
+    import IDcard from "../hr_admin/tabs/IdCardTab.vue";
 
     /* ✅ SCROLL STATE */
     const isScrolled = ref(false);
@@ -162,10 +166,11 @@
         "Attachments / Files": Attachments,
         "Attendance": Attendance,
         "Leaves": Leaves,
-        // "Job History": JobHistory,
-        // "Evaluation History": Evaluation,
-        // "Allowance": Allowance,
-        // "Disciplinary Action": Disciplinary,
+        "Job History": JobHistory,
+        "Evaluation History": Evaluation,
+        "Allowance": Allowance,
+        "ID Card": IDcard,
+        "Disciplinary Action": Disciplinary,
     };
 
     const currentTabComponent = computed(() => {
@@ -177,6 +182,11 @@
         "Attachments / Files",
         "Attendance",
         "Leaves",
+        "Job History",
+        "Allowance",
+        "ID Card",
+        "Evaluation History",
+        "Disciplinary Action",
     ];
 
     const addFile = (file) => {

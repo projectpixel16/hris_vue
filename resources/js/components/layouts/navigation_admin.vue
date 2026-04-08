@@ -54,49 +54,56 @@
 				</svg>
 				Dashboard
 				</a>
-
+				<a href="/admin/applicants" class="menu-link" >
+					<UserIcon class="size-5"></UserIcon>
+					Applicants 
+				</a> 
+				<hr>
 				<!-- HR Masterfile Dropdown -->
 				<div>
-				<button
-					@click="masterfileOpen = !masterfileOpen"
-					class="w-full flex items-center justify-between menu-link"
-				>
-					<span class="flex items-center gap-3">
-					<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
-						viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-					</svg>
-					HR Masterfile
-					</span>
-					<svg
-					class="w-4 h-4 transform transition-transform"
-					:class="{ 'rotate-180': masterfileOpen }"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					viewBox="0 0 24 24"
+					<button
+						@click="masterfileOpen = !masterfileOpen"
+						class="w-full flex items-center justify-between menu-link"
 					>
-					<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-					</svg>
-				</button>
+						<span class="flex items-center gap-3">
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+							viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+						</svg>
+						HR Masterfile
+						</span>
+						<svg
+						class="w-4 h-4 transform transition-transform"
+						:class="{ 'rotate-180': masterfileOpen }"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						viewBox="0 0 24 24"
+						>
+						<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+						</svg>
+					</button>
 
-				<transition name="fade">
-					<div v-if="masterfileOpen" class="ml-6 mt-1 flex flex-col space-y-1">
-					<a href="/admin/employee_list" class="submenu-link">Employees</a>
-					<a href="#" class="submenu-link">Departments</a>
-					<a href="#" class="submenu-link">Positions</a>
-					<a href="#" class="submenu-link">Employment Type</a>
-					<a href="#" class="submenu-link">Salary Grades</a>
-					<a href="#" class="submenu-link">Users & Roles</a>
-					</div>
-				</transition>
+					<transition name="fade">
+						<div v-if="masterfileOpen" class="ml-6 mt-1 flex flex-col space-y-1">
+							<a href="/admin/employee_list" class="submenu-link">Employees</a>
+							<a href="#" class="submenu-link">Departments</a>
+							<a href="#" class="submenu-link">Positions</a>
+							<a href="#" class="submenu-link">Employment Type</a>
+							<a href="#" class="submenu-link">Salary Grades</a>
+							<a href="#" class="submenu-link">Users & Roles</a>
+						</div>
+					</transition>
 				</div>
-
+				<a href="/admin/employee_list" class="menu-link" >
+					<UserGroupIcon class="size-5"></UserGroupIcon>
+					Employees 
+				</a> 
+				
 				<!-- Attendance --> 
 				<a href="#" class="menu-link" >
-					<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"> 
-						<path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /> 
-					</svg> Attendance </a> 
+					<CalendarIcon class="size-5"></CalendarIcon> Attendance 
+				</a> 
 				<!-- Payroll --> 
 				<a href="#" class="menu-link" > 
 					<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"> 
@@ -186,6 +193,7 @@
 
 <script setup>
 	import { ref, computed, onMounted, onUnmounted } from "vue";
+	import { UserIcon, UserGroupIcon, CalendarIcon } from "@heroicons/vue/24/outline";
 
 	const sidebarOpen = ref(false);
 	const masterfileOpen = ref(false);

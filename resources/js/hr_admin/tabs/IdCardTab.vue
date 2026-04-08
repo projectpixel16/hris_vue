@@ -136,6 +136,10 @@
 </template>
 
 <script setup>
+    import { ref, computed, onMounted, onBeforeUnmount   } from "vue";  
+    defineProps({
+        employee: Object
+    })
     const backgroundImage = ref('/default-bg.png')
 
     const company = ref({
