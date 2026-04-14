@@ -9,6 +9,9 @@ import employee_add from '../hr_admin/employee_add.vue'
 import employee_profile from '../hr_admin/employee_profile.vue'
 import applicants from '../hr_admin/applicant_list.vue'
 
+
+import emp_dashboard from '../employees/dashboard.vue'
+
 const routes = [
     {
         path:'/',
@@ -47,6 +50,12 @@ const routes = [
         meta:{
             requiresAuth:false
         }
+    },
+
+
+    {
+        path:'/employee/dashboard',
+        component: emp_dashboard,
     },
 
 ]
