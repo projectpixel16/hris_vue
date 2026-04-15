@@ -1,5 +1,5 @@
 <template>
-	<div class="flex min-h-screen text-gray-700">
+	<div class="flex min-h-screen text-gray-700 bg-gray-50">
 		<div v-if="sidebarOpen" class="fixed inset-0 bg-black/30 z-40" @click="closeOverlays"
 			>
 		</div>
