@@ -18,13 +18,13 @@
         </div>
 
         <!-- PROFILE -->
-        <div class="px-6 py-4 border-b flex items-center gap-3">
+        <a href="/employee/profile" class="px-6 py-4 border-b flex items-center gap-3">
             <div class="w-11 h-11 rounded-full bg-gray-300"></div>
             <div>
                 <p class="text-sm font-semibold">Employee</p>
                 <p class="text-xs text-gray-500">Frontend Dev</p>
             </div>
-        </div>
+        </a>
 
         <!-- MENU -->
         <nav class="flex-1 px-4 py-4 space-y-1 text-sm overflow-y-auto">
