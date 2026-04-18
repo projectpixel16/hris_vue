@@ -19,6 +19,9 @@ import master_users from '../efiling/masterfile/users.vue'
 import master_departments from '../efiling/masterfile/departments.vue'
 import master_company from '../efiling/masterfile/company.vue'
 
+// CVF UI
+import cvf_dashboard from '../cvf/dashboard.vue'
+
 const routes = [
     {
         path:'/',
@@ -87,6 +90,11 @@ const routes = [
     {
         path:'/filing/company',
         component: master_company,
+    },
+
+    {
+        path:'/cvf/dashboard',
+        component: cvf_dashboard,
     },
 
 ]
