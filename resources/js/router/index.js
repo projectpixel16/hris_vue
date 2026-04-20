@@ -12,6 +12,9 @@ import applicants from '../hr_admin/applicant_list.vue'
 import emp_profile from '../employees/profile.vue'
 import emp_dashboard from '../employees/dashboard.vue'
 
+// CVF UI
+import cvf_dashboard from '../cvf/dashboard.vue'
+
 const routes = [
     {
         path:'/',
@@ -62,6 +65,10 @@ const routes = [
         component: emp_profile,
     },
 
+    {
+        path:'/cvf/dashboard',
+        component: cvf_dashboard,
+    },
 
 ]
 
