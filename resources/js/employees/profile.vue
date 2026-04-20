@@ -1,221 +1,211 @@
 <template>
     <navigation>
         <div class="space-y-6">
-            <div class="flex gap-4 transition-all duration-300 bg-white rounded-2xl shadow-sm border p-6"">
-                <!-- LEFT -->
-                <div class="flex items-center gap-5 w-2/3">
-                    <!-- PROFILE PIC -->
-                    <div class="w-48 h-48 rounded-xl bg-gray-200 overflow-hidden">
-                        <img 
-                            v-if="employee.photo"
-                            :src="employee.photo" 
-                            class="w-full h-full object-cover"
-                        />
-                    </div>
+            <div class="flex flex-col md:flex-row gap-6">
 
-                    <!-- INFO -->
-                    <div>
-                        <h1 class="text-2xl font-semibold text-gray-800">
-                            {{ employee.fullName }}
-                        </h1>
+                <!-- LEFT SIDE -->
+                <div class="md:w-8/12 space-y-6">
 
-                        <div class="flex gap-2 mt-2">
-                            <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700">
-                                {{ employee.status }}
-                            </span>
-                            <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-700">
-                                {{ employee.employmentType }}
-                            </span>
-                        </div>
+                    <!-- 🔵 BIG CARD 1 (PROFILE) -->
+                    <div class="bg-white rounded-lg shadow-sm border p-6">
+                        <div class="flex gap-6">
 
-                        <div class="text-sm text-gray-500 mt-2 space-y-1">
-                            <div class="flex justify-start space-x-2">
-                                <PhoneIcon class="size-4"></PhoneIcon>
-                                <span>{{ employee.contactNumber }}</span>
+                            <!-- PHOTO -->
+                            <div class="w-40 h-40 rounded-full bg-gray-200 overflow-hidden">
+                                <img 
+                                    v-if="employee.photo"
+                                    :src="employee.photo"
+                                    class="w-full h-full object-cover"
+                                />
                             </div>
-                            <div class="flex justify-start space-x-2">
-                                <EnvelopeIcon class="size-4"></EnvelopeIcon>
-                                <span>{{ employee.email }}</span>
-                            </div>
-                            <div class="flex justify-start space-x-2">
-                                <MapPinIcon class="size-4"></MapPinIcon>
-                                <span>{{ employee.presentAddress }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- RIGHT -->
-                <div class="gap-5 w-1/3 text-sm text-right space-y-4 p-5 py-6 border-r-4">
-                    <div>
-                        <div class="text-gray-500 m-0">Employee No.</div>
-                        <div class="font-medium text-gray-500">{{ employee.employeeNo }}</div>
-                    </div>
+                            <!-- INFO -->
+                            <div class="flex-1">
+                                <h1 class="text-2xl font-semibold text-gray-800">
+                                    {{ employee.fullName }}
+                                </h1>
 
-                    <div>
-                        <div class="text-gray-500 m-0">Date Hired</div>
-                        <div class="font-medium text-gray-500">{{ employee.dateHired }}</div>
-                    </div>
-
-                    <div>
-                        <div class="text-gray-500 m-0">Current Position</div>
-                        <div class="font-medium text-gray-500">{{ employee.position }}</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="space-y-4">
-                <div class="bg-white rounded-2xl shadow-sm border p-6">
-                    <h3 class="text-gray-800 font-semibold text-lg mb-4">
-                        Personal Information
-                    </h3>
-
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-
-                        <div>
-                            <p class="text-gray-500 text-xs">Birthdate</p>
-                            <p class="font-medium text-gray-800">{{ employee.dateOfBirth }}</p>
-                        </div>
-
-                        <div>
-                            <p class="text-gray-500 text-xs">Place of Birth</p>
-                            <p class="font-medium text-gray-800">{{ employee.placeOfBirth }}</p>
-                        </div>
-
-                        <div>
-                            <p class="text-gray-500 text-xs">Sex</p>
-                            <p class="font-medium text-gray-800">{{ employee.sex }}</p>
-                        </div>
-
-                        <div>
-                            <p class="text-gray-500 text-xs">Civil Status</p>
-                            <p class="font-medium text-gray-800">{{ employee.civilStatus }}</p>
-                        </div>
-
-                        <div>
-                            <p class="text-gray-500 text-xs">Nationality</p>
-                            <p class="font-medium text-gray-800">{{ employee.nationality }}</p>
-                        </div>
-
-                        <div>
-                            <p class="text-gray-500 text-xs">Religion</p>
-                            <p class="font-medium text-gray-800">{{ employee.religion }}</p>
-                        </div>
-
-                        <div class="col-span-3">
-                            <p class="text-gray-500 text-xs">Present Address</p>
-                            <p class="font-medium text-gray-800">{{ employee.presentAddress }}</p>
-                        </div>
-
-                        <div class="col-span-3">
-                            <p class="text-gray-500 text-xs">Permanent Address</p>
-                            <p class="font-medium text-gray-800">{{ employee.permanentAddress }}</p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- GRID -->
-                <div class="grid md:grid-cols-2 gap-6">
-
-                    <!-- FAMILY -->
-                    <div class="bg-white rounded-2xl shadow-sm border">
-                        <div class="p-5 border-b font-semibold text-gray-700">Family</div>
-
-                        <div class="divide-y max-h-72 overflow-y-auto">
-                            <div v-for="(fam, i) in employee.family" :key="i" class="p-4">
-                                <div class="font-medium text-gray-800">{{ fam.name }}</div>
-                                <div class="text-xs text-gray-500">
-                                    {{ fam.relationship }} • {{ fam.age }} yrs
+                                <div class="flex gap-2 mt-2">
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700">
+                                        {{ employee.status }}
+                                    </span>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-700">
+                                        {{ employee.employmentType }}
+                                    </span>
                                 </div>
-                                <div class="text-xs text-gray-400">{{ fam.occupation }}</div>
+
+                                <div class="text-sm text-gray-500 mt-4 space-y-2">
+                                    <div class="flex gap-2 items-center">
+                                        <PhoneIcon class="size-4"/>
+                                        <span>{{ employee.contactNumber }}</span>
+                                    </div>
+                                    <div class="flex gap-2 items-center">
+                                        <EnvelopeIcon class="size-4"/>
+                                        <span>{{ employee.email }}</span>
+                                    </div>
+                                    <div class="flex gap-2 items-center">
+                                        <MapPinIcon class="size-4"/>
+                                        <span>{{ employee.presentAddress }}</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div v-if="!employee.family?.length" class="p-4 text-gray-400 text-sm">
-                                No records
-                            </div>
+                        
                         </div>
                     </div>
 
-                    <!-- EDUCATION -->
-                    <div class="bg-white rounded-2xl shadow-sm border">
-                        <div class="p-5 border-b font-semibold text-gray-700">Education</div>
+                    <!-- 🟢 BIG CARD 2 (PERSONAL INFO) -->
+                    <div class="bg-white rounded-lg shadow-sm border p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                            Personal Information
+                        </h3>
 
-                        <div class="divide-y max-h-72 overflow-y-auto">
-                            <div v-for="(edu, i) in employee.education" :key="i" class="p-4">
-                                <div class="font-medium text-gray-800">{{ edu.school }}</div>
-                                <div class="text-xs text-gray-500">{{ edu.course }}</div>
-                                <div class="text-xs text-gray-400">{{ edu.year }}</div>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+
+                            <div>
+                                <p class="text-gray-500">Birthdate</p>
+                                <p class="font-medium">{{ employee.dateOfBirth }}</p>
                             </div>
 
-                            <div v-if="!employee.education?.length" class="p-4 text-gray-400 text-sm">
-                                No records
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- EMPLOYMENT -->
-                    <div class="bg-white rounded-2xl shadow-sm border">
-                        <div class="p-5 border-b font-semibold text-gray-700">Employment</div>
-
-                        <div class="divide-y max-h-72 overflow-y-auto">
-                            <div v-for="(job, i) in employee.employmentHistory" :key="i" class="p-4">
-                                <div class="font-medium text-gray-800">{{ job.employer }}</div>
-                                <div class="text-xs text-gray-500">{{ job.position }}</div>
-                                <div class="text-xs text-gray-400">{{ job.from }} - {{ job.to }}</div>
+                            <div>
+                                <p class="text-gray-500">Place of Birth</p>
+                                <p class="font-medium">{{ employee.placeOfBirth }}</p>
                             </div>
 
-                            <div v-if="!employee.employmentHistory?.length" class="p-4 text-gray-400 text-sm">
-                                No records
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TRAININGS -->
-                    <div class="bg-white rounded-2xl shadow-sm border">
-                        <div class="p-5 border-b font-semibold text-gray-700">Trainings</div>
-
-                        <div class="divide-y max-h-72 overflow-y-auto">
-                            <div v-for="(train, i) in employee.trainings" :key="i" class="p-4">
-                                <div class="font-medium text-gray-800">{{ train.title }}</div>
-                                <div class="text-xs text-gray-500">{{ train.organizer }}</div>
-                                <div class="text-xs text-gray-400">{{ train.date }}</div>
+                            <div>
+                                <p class="text-gray-500">Sex</p>
+                                <p class="font-medium">{{ employee.sex }}</p>
                             </div>
 
-                            <div v-if="!employee.trainings?.length" class="p-4 text-gray-400 text-sm">
-                                No records
+                            <div>
+                                <p class="text-gray-500">Civil Status</p>
+                                <p class="font-medium">{{ employee.civilStatus }}</p>
                             </div>
+
+                            <div>
+                                <p class="text-gray-500">Nationality</p>
+                                <p class="font-medium">{{ employee.nationality }}</p>
+                            </div>
+
+                            <div>
+                                <p class="text-gray-500">Religion</p>
+                                <p class="font-medium">{{ employee.religion }}</p>
+                            </div>
+
+                            <div class="col-span-2">
+                                <p class="text-gray-500">Present Address</p>
+                                <p class="font-medium">{{ employee.presentAddress }}</p>
+                            </div>
+
+                            <div class="col-span-2">
+                                <p class="text-gray-500">Permanent Address</p>
+                                <p class="font-medium">{{ employee.permanentAddress }}</p>
+                            </div>
+
                         </div>
                     </div>
 
                 </div>
 
-                <!-- BOTTOM -->
-                <div class="grid md:grid-cols-2 gap-6">
+                <!-- RIGHT SIDE -->
+                <div class="md:w-4/12">
+                    <div class="bg-white rounded-lg shadow-sm border p-6 h-full">
+                        <!-- RIGHT META -->
+                        <div class="text-sm space-y-3 mb-4">
+                            <div>
+                                <div class="text-gray-500">Employee No.</div>
+                                <div class="font-medium">{{ employee.employeeNo }}</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500">Date Hired</div>
+                                <div class="font-medium">{{ employee.dateHired }}</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500">Position</div>
+                                <div class="font-medium">{{ employee.position }}</div>
+                            </div>
+                        </div>
+                        <hr class="mb-4">
+                        <!-- 🟡 COMBINED CARD -->
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                            Additional Details
+                        </h3>
 
-                    <!-- ADDITIONAL -->
-                    <div class="bg-white rounded-2xl shadow-sm border p-5">
-                        <h3 class="font-semibold text-gray-700 mb-3">Additional</h3>
-
-                        <div class="space-y-2">
+                        <!-- ADDITIONAL -->
+                        <div class="mb-6 space-y-2 text-sm">
                             <p><span class="text-gray-500">Skills:</span> {{ employee.skills }}</p>
                             <p><span class="text-gray-500">Hobbies:</span> {{ employee.hobbies }}</p>
                             <p><span class="text-gray-500">Notes:</span> {{ employee.notes }}</p>
                         </div>
+
+                        <!-- CHARACTER REF -->
+                        <div>
+                            <h4 class="font-semibold text-gray-700 mb-2">
+                                Character Reference
+                            </h4>
+
+                            <div class="divide-y max-h-64 overflow-y-auto">
+                                <div v-for="(ref, i) in employee.characterRefs" :key="i" class="py-3">
+                                    <div class="font-medium text-gray-800">{{ ref.name }}</div>
+                                    <div class="text-xs text-gray-500">{{ ref.company }}</div>
+                                    <div class="text-xs text-gray-400">{{ ref.contact }}</div>
+                                </div>
+
+                                <div v-if="!employee.characterRefs?.length" class="text-gray-400 text-sm py-3">
+                                    No records
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="md:w-6/12">
+                <div class="bg-white rounded-lg shadow-sm border p-6 h-full">
+                        <!-- RIGHT META -->
+                    <div class="text-sm space-y-3 mb-4">
+                        <div>
+                            <div class="text-gray-500">Employee No.</div>
+                            <div class="font-medium">{{ employee.employeeNo }}</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-500">Date Hired</div>
+                            <div class="font-medium">{{ employee.dateHired }}</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-500">Position</div>
+                            <div class="font-medium">{{ employee.position }}</div>
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+                    <!-- 🟡 COMBINED CARD -->
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                        Additional Details
+                    </h3>
+
+                    <!-- ADDITIONAL -->
+                    <div class="mb-6 space-y-2 text-sm">
+                        <p><span class="text-gray-500">Skills:</span> {{ employee.skills }}</p>
+                        <p><span class="text-gray-500">Hobbies:</span> {{ employee.hobbies }}</p>
+                        <p><span class="text-gray-500">Notes:</span> {{ employee.notes }}</p>
                     </div>
 
                     <!-- CHARACTER REF -->
-                    <div class="bg-white rounded-2xl shadow-sm border">
-                        <div class="p-5 border-b font-semibold text-gray-700">Character Reference</div>
+                    <div>
+                        <h4 class="font-semibold text-gray-700 mb-2">
+                            Character Reference
+                        </h4>
 
-                        <div class="divide-y max-h-72 overflow-y-auto">
-                            <div v-for="(ref, i) in employee.characterRefs" :key="i" class="p-4">
+                        <div class="divide-y max-h-64 overflow-y-auto">
+                            <div v-for="(ref, i) in employee.characterRefs" :key="i" class="py-3">
                                 <div class="font-medium text-gray-800">{{ ref.name }}</div>
                                 <div class="text-xs text-gray-500">{{ ref.company }}</div>
                                 <div class="text-xs text-gray-400">{{ ref.contact }}</div>
                             </div>
 
-                            <div v-if="!employee.characterRefs?.length" class="p-4 text-gray-400 text-sm">
+                            <div v-if="!employee.characterRefs?.length" class="text-gray-400 text-sm py-3">
                                 No records
                             </div>
                         </div>
@@ -223,8 +213,8 @@
 
                 </div>
             </div>
-
         </div>
+                
     </navigation>
 </template>
 <style>
