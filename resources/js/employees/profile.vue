@@ -7,11 +7,11 @@
                 <div class="md:w-8/12 space-y-6">
 
                     <!-- 🔵 BIG CARD 1 (PROFILE) -->
-                    <div class="bg-white rounded-lg shadow-sm border p-6">
+                    <div class="bg-white rounded-2xl shadow-sm p-6">
                         <div class="flex gap-6">
 
                             <!-- PHOTO -->
-                            <div class="w-40 h-40 rounded-full bg-gray-200 overflow-hidden">
+                            <div class="w-40 h-40 rounded-lg bg-gray-200 overflow-hidden">
                                 <img 
                                     v-if="employee.photo"
                                     :src="employee.photo"
@@ -55,7 +55,7 @@
                     </div>
 
                     <!-- 🟢 BIG CARD 2 (PERSONAL INFO) -->
-                    <div class="bg-white rounded-lg shadow-sm border p-6">
+                    <div class="bg-white rounded-2xl shadow-sm p-6">
                         <h3 class="text-lg font-semibold text-gray-800 mb-4">
                             Personal Information
                         </h3>
@@ -109,7 +109,7 @@
 
                 <!-- RIGHT SIDE -->
                 <div class="md:w-4/12">
-                    <div class="bg-white rounded-lg shadow-sm border p-6 h-full">
+                    <div class="bg-white rounded-2xl shadow-sm p-6 h-full">
                         <!-- RIGHT META -->
                         <div class="text-sm space-y-3 mb-4">
                             <div>
@@ -158,12 +158,12 @@
                         </div>
 
                     </div>
-                </div>
+                </div> 
 
             </div>
 
             <div class="md:w-6/12">
-                <div class="bg-white rounded-lg shadow-sm border p-6 h-full">
+                <div class="bg-white rounded-2xl shadow-sm p-6 h-full">
                         <!-- RIGHT META -->
                     <div class="text-sm space-y-3 mb-4">
                         <div>

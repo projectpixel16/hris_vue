@@ -7,18 +7,23 @@
         <!-- SIDEBAR -->
         <aside
         :class="[
-            'fixed md:sticky top-0 left-0 h-screen w-72 bg-white border-r shadow-sm flex flex-col transition-transform duration-300 z-50',
+            'fixed md:sticky top-0 left-0 h-screen w-72 bg-white flex flex-col transition-transform duration-300 z-50',
             sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         ]"
         >
 
         <!-- LOGO -->
-        <div class="h-16 px-6 py-5 border-b">
-            <h1 class="text-xl font-bold text-green-800">HRIS</h1>
+        <div class="h-16 px-6 flex items-center gap-3">
+            <span class="bg-green-800 text-white font-bold w-10 h-10 flex items-center justify-center rounded-xl">
+                H
+            </span>
+            <h1 class="text-xl font-bold text-green-800">
+                HRIS
+            </h1>
         </div>
 
         <!-- PROFILE -->
-        <a href="/employee/profile" class="px-6 py-4 border-b flex items-center gap-3">
+        <a href="/employee/profile" class="px-6 py-4 flex items-center gap-3">
             <div class="w-11 h-11 rounded-full bg-gray-300"></div>
             <div>
                 <p class="text-sm font-semibold">Employee</p>
@@ -104,7 +109,7 @@
         <div class="flex-1 flex flex-col">
 
             <!-- TOPBAR -->
-            <header class="flex items-center justify-between px-6 h-16 bg-white border-b">
+            <header class="flex items-center justify-between px-6 h-16 bg-white">
 
                 <!-- MOBILE MENU BUTTON -->
                 <button class="md:hidden" @click="sidebarOpen = true">
@@ -151,7 +156,7 @@
             </header>
 
             <!-- PAGE -->
-            <main class="p-6">
+            <main class="p-6 ">
                 <slot />
             </main>
 

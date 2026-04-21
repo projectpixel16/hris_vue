@@ -11,6 +11,7 @@ import applicants from '../hr_admin/applicant_list.vue'
 
 import emp_profile from '../employees/profile.vue'
 import emp_dashboard from '../employees/dashboard.vue'
+import emp_attendance from '../employees/attendance.vue'
 
 // CVF UI
 import cvf_dashboard from '../cvf/dashboard.vue'
@@ -64,7 +65,10 @@ const routes = [
         path:'/employee/profile',
         component: emp_profile,
     },
-
+    {
+        path:'/employee/attendance',
+        component: emp_attendance,
+    },
     {
         path:'/cvf/dashboard',
         component: cvf_dashboard,
